@@ -8,7 +8,6 @@ library(ggplot2)
 
 #options(max.print=999999)
 
-# Question to do :         1(c),4(b) ,4(f) - 18marks
 
 install.packages("knitr")
 library(knitr)
@@ -19,7 +18,6 @@ install.packages("rmarkdown")
 
 
 
-#Solution  1(a)
 
 #Loading the Dataframe
 load("Hurdat2_tidy.RData")
@@ -37,7 +35,6 @@ famous_hurrs
 
 
 
-#Solution 1(b)
 
 #A Function that takes the hurrs dataframe as an input and returns a List
 Hurdat2_summary <- function(hurrs){
@@ -78,7 +75,6 @@ Hurdat2_summary(famous_hurrs)
 
 
 
-# Question 1(c)
 
 
 
@@ -92,7 +88,6 @@ hist(trackk$longitude)
 
 
 
-#Question 1(d)
 
 # Finding names of named hurricane by removing the unnamed hurricane storms
 hurrs %>% filter(name!= "UNNAMED") -> named_hurrs
@@ -112,7 +107,6 @@ named_year_hurrs[1,'year']
 
 
 
-# Question 2(a)
 
 
 
@@ -144,7 +138,6 @@ hurricaneBasemap() +
 
 
 
-#Question 2(b) 
 
 
 # A function that takes a year as input
@@ -212,7 +205,6 @@ Lat_long_dist(40,60,30,60)
 
 
 
-#Question 3(b)
 
 # Function that takes city name as input and returns its long-lat to calculate Distance
 
@@ -239,7 +231,6 @@ Lat_long_distance()
 
 
 
-#Question 3(c)
 
 #function to check if the user swapped latitude and longitude and if so, provide a useful warning message
 
@@ -268,7 +259,6 @@ Distance_Lat_long()
 
 
 
-#Question 3(d)
 
 distancee <- function(Miami, Long, Lat ){
   dx = (Long - Miami[1])*cos((pi/180)*((Lat+Miami[2])/2))
@@ -333,7 +323,6 @@ hurricaneBasemap() +
 
 
 
-# Question 4(a)
 
 # Number of hurricane_Strength storms in each year
 
@@ -364,10 +353,9 @@ hurricaneBasemap() +
 
 
 
-#question 4 b
 
 
-#4b)
+
 
 hurrs_Landfall <- hurrs %>% filter(isLandfall == TRUE, isHurricane == TRUE) 
 
@@ -421,7 +409,6 @@ hurricaneBasemap() +
 
 
 
-#Question 4(c)
 
 hurrs%>%group_by(year)%>%summarise(Windspeed=max(windspeed))%>%ggplot(aes(year,Windspeed))+
   geom_line(colour='blue')+
@@ -437,7 +424,6 @@ hurrs%>%group_by(year)%>%summarise(Windspeed=max(windspeed))%>%ggplot(aes(year,W
 
 
 
-#Question4(d)
 
 
 
@@ -450,7 +436,6 @@ hurrs%>%group_by(month)%>%ggplot()+geom_histogram(aes(month),binwidth=1, color="
 
 
 
-#Question4(E)
 
 # adding a decade column to the hurrs dataframe.
 hurrs_decade = mutate(hurrs,Decade = hurrs$year - (hurrs$year%%10) ) 
@@ -492,10 +477,7 @@ head(hurrs_decade)
 
 
 
-# (b) The total number isn’t the only aspect of hurricane statistics that 
-#     might change with climate change. What about the geographical area affected? 
-#     Make a plot that lets you visually evaluate whether the latitude range where 
-#     storms cross the coastline (make landfall) is expanding in recent decades
+
 
 geo_area <- hurrs %>% filter(isLandfall == TRUE, isHurricane == TRUE) 
 geo_area_2 <- hurrs %>% filter(isLandfall == FALSE, isHurricane == TRUE)
